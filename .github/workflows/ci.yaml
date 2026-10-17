@@ -24,4 +24,12 @@ jobs:
               pip install -r requirements.txt
 
          - name: Running the application
-           run: python app.py
+           run: |
+              python app.py &
+              sleep 7
+
+         - name: Testing our Basic Flask Application
+           run: |
+              echo "Testing has been started."
+              curl http://127.0.0.1:5000
+              echo "Testing has been finished!!!"
