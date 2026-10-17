@@ -1,0 +1,27 @@
+name: Flask_Pipeline
+
+on: 
+   push: 
+      branches: 
+         - main
+
+jobs:
+   python_app_pipeline:
+      runs-on: ubuntu-latest
+
+      steps:
+         - name: Checking out the python application code
+           uses: actions/checkout@v7
+
+         - name: Setting up python and all the dependencies
+           uses: actions/setup-python@v7
+           with:
+              python-version: '3.13' 
+
+         - name: Installing updates and dependencies
+           run: |
+              pip -m install --upgrade pip
+              pip install -r requirements.txt
+
+         - name: Running the application
+           run: python app.py
